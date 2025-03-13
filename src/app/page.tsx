@@ -45,6 +45,9 @@ export default function Home() {
       }>
         <HomeContent />
       </Suspense>
+      <footer className="absolute bottom-4 w-full text-center text-white/80 text-sm z-10">
+        Made with ❤️ by Ace
+      </footer>
     </main>
   );
 }

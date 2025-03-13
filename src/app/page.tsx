@@ -25,10 +25,6 @@ export default function Home() {
           <p className="text-white/90 text-lg md:text-xl mb-8 animate-slide-up">
             {isNaira ? 'I made this special card just for you!' : 'Tap the envelope'}
           </p>
-          {/* Debug info - will remove after testing */}
-          <p className="text-white/50 text-xs">
-            Mode: {isNaira ? 'Personalized for Naira' : 'General'}
-          </p>
         </div>
         <Envelope name={name} />
       </div>

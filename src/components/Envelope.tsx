@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface EnvelopeProps {
@@ -12,11 +12,6 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const envelopeRef = useRef<HTMLDivElement>(null);
   const isNaira = name?.toLowerCase() === 'naira';
-
-  // Debug log when component mounts or name changes
-  useEffect(() => {
-    console.log('Envelope Component:', { name, isNaira, currentGreetings: isNaira ? 'Naira\'s' : 'General' });
-  }, [name, isNaira]);
 
   const nairasGreetings = [
     {
@@ -69,7 +64,6 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
     }
   ];
 
-  // Explicitly choose greetings based on name
   const greetings = isNaira ? nairasGreetings : generalGreetings;
 
   const createColorBurst = (x: number, y: number) => {
@@ -151,10 +145,6 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
             )}
           </motion.div>
         </AnimatePresence>
-      </div>
-      {/* Debug info */}
-      <div className="absolute -bottom-6 left-0 right-0 text-center text-white/50 text-xs">
-        Current mode: {isNaira ? 'Naira\'s Greetings' : 'General Greetings'}
       </div>
     </div>
   );

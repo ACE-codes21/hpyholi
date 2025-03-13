@@ -23,7 +23,9 @@ export default function Home() {
             {isNaira ? 'Dear Naira, Happy Holi! 🎨' : 'Happy Holi! 🎨'}
           </h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 animate-slide-up">
-            {isNaira ? 'I made this special card just for you!' : 'Tap the envelope'}
+            {isNaira 
+              ? 'Let the colors of joy paint your world with happiness ✨' 
+              : 'Tap the envelope'}
           </p>
         </div>
         <Envelope name={name} />

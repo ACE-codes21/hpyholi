@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface EnvelopeProps {
@@ -12,6 +12,29 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const envelopeRef = useRef<HTMLDivElement>(null);
   const isNaira = name?.toLowerCase() === 'naira';
+
+  // Debug log when component mounts or name changes
+  useEffect(() => {
+    console.log('Envelope Component:', { name, isNaira, currentGreetings: isNaira ? 'Naira\'s' : 'General' });
+  }, [name, isNaira]);
+
+  const nairasGreetings = [
+    {
+      title: "Dear Naira! 🌺",
+      message: "To my wonderful friend Naira, may your Holi be as vibrant and beautiful as your spirit! Your friendship adds the most beautiful colors to my life. Wishing you a day filled with joy, laughter, and endless happiness!",
+      color: "bg-gradient-to-r from-pink-400 to-purple-600"
+    },
+    {
+      title: "Special Holi Wishes! 🎨",
+      message: "Naira, just like the colors of Holi make everything beautiful, your presence makes our friendship special. May this festival bring you all the success and happiness you deserve. Keep spreading your colorful charm!",
+      color: "bg-gradient-to-r from-blue-400 to-teal-500"
+    },
+    {
+      title: "Celebrating You! ✨",
+      message: "Dear Naira, on this festive occasion, I want you to know how much your friendship means to me. May your life be painted with the brightest colors of joy, success, and endless possibilities. Happy Holi!",
+      color: "bg-gradient-to-r from-purple-400 to-pink-500"
+    }
+  ];
 
   const generalGreetings = [
     {
@@ -46,24 +69,7 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
     }
   ];
 
-  const nairasGreetings = [
-    {
-      title: "Dear Naira! 🌺",
-      message: "To my wonderful friend Naira, may your Holi be as vibrant and beautiful as your spirit! Your friendship adds the most beautiful colors to my life. Wishing you a day filled with joy, laughter, and endless happiness!",
-      color: "bg-gradient-to-r from-pink-400 to-purple-600"
-    },
-    {
-      title: "Special Holi Wishes! 🎨",
-      message: "Naira, just like the colors of Holi make everything beautiful, your presence makes our friendship special. May this festival bring you all the success and happiness you deserve. Keep spreading your colorful charm!",
-      color: "bg-gradient-to-r from-blue-400 to-teal-500"
-    },
-    {
-      title: "Celebrating You! ✨",
-      message: "Dear Naira, on this festive occasion, I want you to know how much your friendship means to me. May your life be painted with the brightest colors of joy, success, and endless possibilities. Happy Holi!",
-      color: "bg-gradient-to-r from-purple-400 to-pink-500"
-    }
-  ];
-
+  // Explicitly choose greetings based on name
   const greetings = isNaira ? nairasGreetings : generalGreetings;
 
   const createColorBurst = (x: number, y: number) => {
@@ -145,6 +151,10 @@ const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
             )}
           </motion.div>
         </AnimatePresence>
+      </div>
+      {/* Debug info */}
+      <div className="absolute -bottom-6 left-0 right-0 text-center text-white/50 text-xs">
+        Current mode: {isNaira ? 'Naira\'s Greetings' : 'General Greetings'}
       </div>
     </div>
   );

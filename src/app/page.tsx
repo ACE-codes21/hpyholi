@@ -12,6 +12,8 @@ export default function Home() {
   const name = searchParams.get('name');
   const isNaira = name?.toLowerCase() === 'naira';
 
+  console.log('URL Parameters:', { name, isNaira }); // Debug log
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 relative overflow-hidden">
       <ColorSplash />
@@ -22,6 +24,10 @@ export default function Home() {
           </h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 animate-slide-up">
             {isNaira ? 'I made this special card just for you!' : 'Tap the envelope'}
+          </p>
+          {/* Debug info - will remove after testing */}
+          <p className="text-white/50 text-xs">
+            Mode: {isNaira ? 'Personalized for Naira' : 'General'}
           </p>
         </div>
         <Envelope name={name} />

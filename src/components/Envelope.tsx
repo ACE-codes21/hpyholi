@@ -3,12 +3,17 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Envelope = () => {
+interface EnvelopeProps {
+  name?: string | null;
+}
+
+const Envelope: React.FC<EnvelopeProps> = ({ name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const envelopeRef = useRef<HTMLDivElement>(null);
+  const isNaira = name?.toLowerCase() === 'naira';
 
-  const greetings = [
+  const generalGreetings = [
     {
       title: "Happy Holi! 🎨",
       message: "May this festival of colors paint your life with the hues of happiness, splash your days with moments of joy, and color your heart with the tints of love. Let the spirit of Holi bring new beginnings and fresh perspectives to your life.",
@@ -40,6 +45,26 @@ const Envelope = () => {
       color: "bg-gradient-to-r from-teal-400 to-emerald-500"
     }
   ];
+
+  const nairasGreetings = [
+    {
+      title: "Dear Naira! 🌺",
+      message: "To my wonderful friend Naira, may your Holi be as vibrant and beautiful as your spirit! Your friendship adds the most beautiful colors to my life. Wishing you a day filled with joy, laughter, and endless happiness!",
+      color: "bg-gradient-to-r from-pink-400 to-purple-600"
+    },
+    {
+      title: "Special Holi Wishes! 🎨",
+      message: "Naira, just like the colors of Holi make everything beautiful, your presence makes our friendship special. May this festival bring you all the success and happiness you deserve. Keep spreading your colorful charm!",
+      color: "bg-gradient-to-r from-blue-400 to-teal-500"
+    },
+    {
+      title: "Celebrating You! ✨",
+      message: "Dear Naira, on this festive occasion, I want you to know how much your friendship means to me. May your life be painted with the brightest colors of joy, success, and endless possibilities. Happy Holi!",
+      color: "bg-gradient-to-r from-purple-400 to-pink-500"
+    }
+  ];
+
+  const greetings = isNaira ? nairasGreetings : generalGreetings;
 
   const createColorBurst = (x: number, y: number) => {
     const event = new MouseEvent('click', {
